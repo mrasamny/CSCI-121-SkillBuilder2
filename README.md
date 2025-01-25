@@ -112,6 +112,14 @@ Notice, that -1 should be wrapped back to 6 (i.e. Saturday), equivalent to negat
 	</tbody>
 </table>
 
+<p style="background-color:pink;padding: 5px; border: 1px solid red;">
+<strong>IMPORTANT</strong>: Use the string method <code>equalsIgnoreCase</code> as explained in class.  For example, if you have a string variable called `month` and you want to see if it is equal to "thursday", ignoring case, then
+</p>
+
+```
+"thursday".equalsIgnoreCase(month)
+```
+
 
 ### Converting the Name of a Month to an Integer Value
 
@@ -190,6 +198,9 @@ Implement the method `getMonthName`.  This method takes an integer in the range 
 
 The numeric values to the name of the month is provided in the <a href="#table3">Table 3</a> above.
 
+<p style="background-color:pink;padding: 5px; border: 1px solid red;">
+<strong>IMPORTANT</strong>:  Implement this method using a <strong>switch</strong> statement.
+</p>
 
 ###  Days in a Month
 
@@ -335,11 +346,16 @@ You are now ready to implement the overloaded method `dayOfWeek`.
 
 The first overloaded method with signature `public static int dayOfWeek(int, int, int)` has three paramters, `month`, which is an integer from 1 to 12, inclusively.  A `dayOfMonth`, which is an integer within the range of days in `month`, and `year`.
 
+
 The second overloaded method with signature `public static int dayOfWeek(String, int, int)` has three parameters with `month` being the name of the month and the other two paraemters as explained above.
+
+<p style="background-color:pink;padding: 5px; border: 1px solid red;">
+<strong>IMPORTANT</strong>: The second overloaded method should use composition, primarily `getMonthNumber` and the first overloaded method of `dayOfWeek`.
+<p>
 
 ## Test Class
 
-Once the `Date` class is implemented, test it using the included JUnit test.  Configure the run configuration using Gradle.
+Once the `Date` class is implemented, test it using the included JUnit test.  Configure the run configuration using Gradle.  The IntelliJ unit tests does not include checks for specific implementation instructions, but CodeGrade will check for those specific implementations.  **Please read the requirements for each method.**
 
 
 ## Submitting Your Work
