@@ -76,9 +76,7 @@ Implement the method `getNameOfDay`. This method takes an integer representing t
 	</tbody>
 </table>
 
-If a numeric value is provided that is outside the 0 to 6 range, inclusively, then the number should be folded back into the range 0 to 6, inclusively.  For example, if a value of 33 is provided, then it should be folded back to 5 because `33 % 7 = 5`, which in turn should result in `"Friday"`.  Your method should handle negative integers as well.  If a negative number is provided, it should be wrapped back to the range 0 to 6, inclusively.  To see how this can be done, consider the following image,
-
-
+If a numeric value is provided that is outside the 0 to 6 range, inclusively, then the number should be folded back into the range 0 to 6, inclusively.  For example, if a value of 33 is provided, then it should be folded back to 5 because `33 % 7 = 5`, which in turn should result in `"Friday"`.  Your method should handle negative integers as well.  If a negative number is provided, it should be wrapped back to the range 0 to 6, inclusively.
 
 Notice, that -1 should be wrapped back to 6 (i.e. Saturday), equivalent to negative indexing in Python. Play with the modulo operator of negative integers in `jshell` and then figure out what calculation must take place to complete the mapping in the table below.
 
@@ -113,6 +111,8 @@ Notice, that -1 should be wrapped back to 6 (i.e. Saturday), equivalent to negat
 		</tr>
 	</tbody>
 </table>
+
+**HINT**: Use jshell and look at what happens when you take a negative number modulo 7.   Then figure out what needs to be done arithmatically to map the result as in <a href="#table2">Table 2</a> above. 
 
 <p style="background-color:pink;padding: 5px; border: 1px solid red;">
 <strong>IMPORTANT</strong>: Use the string method <code>equalsIgnoreCase</code> as explained in class.  For example, if you have a string variable called `month` and you want to see if it is equal to "thursday", ignoring case, then
