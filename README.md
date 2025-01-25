@@ -25,7 +25,10 @@ The Date class serves as a utility class with various methods that provide infor
 Implement the `isLeapYear` method provided in the `Date` class.  The method takes a single integer parameter that is the year and returns true if the year is a leap year; false otherwise.
 
 In the Gregorian calendar, which is the calendar used by most modern countries, the following rules decide which years are leap years:
-1. Every year divisible by 4 is a leap year.2. But every year divisible by 100 is NOT a leap year3. Unless the year is also divisible by 400, then it is still a leap year.
+
+1. Every year divisible by 4 is a leap year.
+2. But every year divisible by 100 is NOT a leap year
+3. Unless the year is also divisible by 400, then it is still a leap year.
 
 ### Name of Day of the Week
 
@@ -226,13 +229,16 @@ results in `29`.
 
 ### Calculating the Day of Week
 
-A `Date` class is really useless if it cannot provide the day of the week for a particular date. The next task is to provide this functionality.  Before we implement the method, we must figure out an algorithm.  To write down an algorithm, we need to figure out a quick method of calculating the day of the weekfor a particular date.
+A `Date` class is really useless if it cannot provide the day of the week for a particular date. The next task is to provide this functionality.  Before we implement the method, we must figure out an algorithm.  To write down an algorithm, we need to figure out a quick method of calculating the day of the week
+for a particular date.
 
-A year has 365 days unless it is a leap year, which would then be366. Since 2023 is not a leap year, what day will January 1, 2024, fall on? The answer is 365 % 7 = 1. This is not the day of the week but rather the number of days after the day that January 1, 2023 falls on. January 1, 2023, falls on a Sunday (0).  So, January 1, 2024, falls on 0 + 1 = 1 (Monday). This means that every January 1 of a nonleap year will start 1 day later than the previous year. If it is a leap year, it must start 2 days after the previous year started. So, January 1, 2025, will start on 1 (Monday) + 2 = 3 (Wednesday).
+A year has 365 days unless it is a leap year, which would then be
+366. Since 2023 is not a leap year, what day will January 1, 2024, fall on? The answer is 365 % 7 = 1. This is not the day of the week but rather the number of days after the day that January 1, 2023 falls on. January 1, 2023, falls on a Sunday (0).  So, January 1, 2024, falls on 0 + 1 = 1 (Monday). This means that every January 1 of a nonleap year will start 1 day later than the previous year. If it is a leap year, it must start 2 days after the previous year started. So, January 1, 2025, will start on 1 (Monday) + 2 = 3 (Wednesday).
 
-Since each year starts 1 day later if I know what day of the week January 1, year 1starts on, then I should be able to calculate the day of the week that January 1, year $n$ falls on. Let’s assume this fact is known, then  year $n$ starts $n\ \%\ 7$ days after January 1 year 1. But that assumes that there are no leap years. Leap years add another day, so the formula should read,
+Since each year starts 1 day later if I know what day of the week January 1, year 1
+starts on, then I should be able to calculate the day of the week that January 1, year $n$ falls on. Let’s assume this fact is known, then  year $n$ starts $n\ \%\ 7$ days after January 1 year 1. But that assumes that there are no leap years. Leap years add another day, so the formula should read,
 
-$ \left( n +  \lfloor\frac{n - 1}{4}\rfloor \right) \%\ 7$ <span style="color:blue;"> &nbsp;&nbsp;(1)</span>
+$$ \left( n +  \lfloor\frac{n - 1}{4}\rfloor \right) \%\ 7$$ <span style="color:blue;"> &nbsp;&nbsp;(1)</span>
 
 Where $\lfloor x \rfloor$ is the floor of $x$. The floor(x) returns the greatest integer less than $x$. Equation 1 adds another day for each year, a leap year, but not every year divisible by 4, which is a leap year. Years divisible by 100 are leap years only if they are divisible by 400. Since every year divisible by 100 is also divisible by 4 (Can you show why?), the 2nd term equation in (eq. 1) overcounts the number of leap years. To correct that overcounting, subtract all the years that fall on the century mark (i.e., divisible by 100) and add back in the years divisible by 400. The final result is the equation,
 
@@ -244,7 +250,10 @@ $ \left( 2024 +  \lfloor\frac{2024 - 1}{4}\rfloor - \lfloor \frac{2024 - 1}{100}
 
 which is Monday.  Work out what day January 1, 2026, will be.
 
-Now, we have a reference point by which we can calculate the day of the week for anyother date. To calculate the day of the week for January 17, 2024, one only needs toknow what day January 1, 2024, falls on and then use the fact that January 17 comes16 days later. So, January 17, 2024, occurs (16 % 7 = 2) days after the day that January 1, 2024, falls on, primarily 3 (Wednesday). What about March 12, 2024. January has 31 days, and February has 29 days (a leap year). So, March 12, 2024 occurs 31+29+12-1=71 days later. So, March 12, 2024 falls on a 1 + (71 % 7) = 2 (Tuesday).
+Now, we have a reference point by which we can calculate the day of the week for any
+other date. To calculate the day of the week for January 17, 2024, one only needs to
+know what day January 1, 2024, falls on and then use the fact that January 17 comes
+16 days later. So, January 17, 2024, occurs (16 % 7 = 2) days after the day that January 1, 2024, falls on, primarily 3 (Wednesday). What about March 12, 2024. January has 31 days, and February has 29 days (a leap year). So, March 12, 2024 occurs 31+29+12-1=71 days later. So, March 12, 2024 falls on a 1 + (71 % 7) = 2 (Tuesday).
 
 A better way to calculate this without adding up the number of days that have passed since January 1 year $n$ is to figure out how many days later each month starts after the previous month. We will call that the *offset*. January has 31 days, and 31 % 7 = 3. So February 1 occurs 3 days after where January 1 occurred. February has 28/29 days, depending on whether it is not or is a leap year. So for nonleap years, March 1 falls (28 % 7) = 0 falls on the same day of the week that February 1 fell on and 3 days after the day January 1 fell on. March has 31 days, so April 1 will fall 3 days later than when March 1 fell or 6 days relative to January 1. If we continue with this, we can generate a running offset, providing a quick lookup table for the 1st of any month. The table is as follows:
 
@@ -323,7 +332,9 @@ A better way to calculate this without adding up the number of days that have pa
 	</tbody>
 </table>
 
-We now have a simple and fast method of calculating the day of the week for anydate. As an example, consider April 13, 2026. We first calculate the day of the weekfor January 1, 2026.
+We now have a simple and fast method of calculating the day of the week for any
+date. As an example, consider April 13, 2026. We first calculate the day of the week
+for January 1, 2026.
 
 $ \left( 2026 +  \lfloor\frac{2026 - 1}{4}\rfloor - \lfloor \frac{2026 - 1}{100} \rfloor + \lfloor \frac{2026 - 1}{400} \rfloor \right) \%\ 7 = \left( 2026 + 506 - 20 + 5 \right) \%\ 7= 4$
 
