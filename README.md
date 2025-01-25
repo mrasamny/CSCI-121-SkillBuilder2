@@ -238,7 +238,7 @@ A year has 365 days unless it is a leap year, which would then be
 Since each year starts 1 day later if I know what day of the week January 1, year 1
 starts on, then I should be able to calculate the day of the week that January 1, year $n$ falls on. Let’s assume this fact is known, then  year $n$ starts $n\ \%\ 7$ days after January 1 year 1. But that assumes that there are no leap years. Leap years add another day, so the formula should read,
 
-$$ \left( n +  \lfloor\frac{n - 1}{4}\rfloor \right) \%\ 7$$ <span style="color:blue;"> &nbsp;&nbsp;(1)</span>
+$ \left( n +  \lfloor\frac{n - 1}{4}\rfloor \right) \%\ 7$ <span style="color:blue;"> &nbsp;&nbsp;(1)</span>
 
 Where $\lfloor x \rfloor$ is the floor of $x$. The floor(x) returns the greatest integer less than $x$. Equation 1 adds another day for each year, a leap year, but not every year divisible by 4, which is a leap year. Years divisible by 100 are leap years only if they are divisible by 400. Since every year divisible by 100 is also divisible by 4 (Can you show why?), the 2nd term equation in (eq. 1) overcounts the number of leap years. To correct that overcounting, subtract all the years that fall on the century mark (i.e., divisible by 100) and add back in the years divisible by 400. The final result is the equation,
 
