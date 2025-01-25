@@ -41,7 +41,6 @@ Implement the method `getNameOfDay`. This method takes an integer representing t
 			<th> Name </th>
 		</tr>
 	</thead>
-
 	<tbody>
 		<tr>
 			<td>0</td>
@@ -76,11 +75,11 @@ Implement the method `getNameOfDay`. This method takes an integer representing t
 
 If a numeric value is provided that is outside the 0 to 6 range, inclusively, then the number should be folded back into the range 0 to 6, inclusively.  For example, if a value of 33 is provided, then it should be folded back to 5 because `33 % 7 = 5`, which in turn should result in `"Friday"`.  Your method should handle negative integers as well.  If a negative number is provided, it should be wrapped back to the range 0 to 6, inclusively.  To see how this can be done, consider the following image,
 
-![]()
+
 
 Notice, that -1 should be wrapped back to 6 (i.e. Saturday), equivalent to negative indexing in Python. Play with the modulo operator of negative integers in `jshell` and then figure out what calculation must take place to complete the mapping in the table below.
 
-<table  style="text-align: center; width:40%" id="table2">
+<table  style="text-align:center; width:40%;" id="table2">
 	<caption>
 		<strong>Table 2</strong>: Mapping negavite integer values to days of the week.
 	</caption>
@@ -138,7 +137,6 @@ The numeric values of the months is provided in the table below.
 			<th> Name </th>
 		</tr>
 	</thead>
-
 	<tbody>
 		<tr>
 			<td>1</td>
@@ -261,7 +259,6 @@ A better way to calculate this without adding up the number of days that have pa
 			<th> Offset for Leap Year</th>
 		</tr>
 	</thead>
-
 	<tbody>
 		<tr>
 			<td>January</td>
